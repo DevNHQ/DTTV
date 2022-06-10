@@ -1,9 +1,12 @@
 import 'package:dttv/src/core/authentication_controller.dart';
+import 'package:dttv/src/pages/home/home_page.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SplashPage extends StatelessWidget {
-  final AuthenticationController _authmanagerController = Get.put(AuthenticationController());
+  final AuthenticationController _authmanagerController =
+      Get.put(AuthenticationController());
 
   SplashPage({Key? key}) : super(key: key);
 
@@ -23,9 +26,7 @@ class SplashPage extends StatelessWidget {
           if (snapshot.hasError) {
             return errorView(snapshot);
           } else {
-            return const Center(
-              child: Text('aaaa'),
-            );
+            return const HomePage();
           }
         }
       },
@@ -37,19 +38,17 @@ class SplashPage extends StatelessWidget {
   }
 
   Scaffold waitingView() {
-    return Scaffold(
-        body: Center(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: const [
-          Padding(
-            padding: EdgeInsets.all(16.0),
-            child: CircularProgressIndicator(),
+    return const Scaffold(
+      body: Center(
+        child: SizedBox(
+          width: 50,
+          height: 50,
+          child: CupertinoActivityIndicator(
+            animating: true,
+            color: Colors.red,
           ),
-          Text('Loading...'),
-        ],
+        ),
       ),
-    ));
+    );
   }
 }
