@@ -1,3 +1,4 @@
+import 'package:dttv/src/commons/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -20,9 +21,10 @@ class CustomAppBar extends AppBar {
           key: key,
           title: Text(
             title ?? '',
+            style: const TextStyle(color: Colors.black),
           ),
           automaticallyImplyLeading: automaticallyImplyLeading,
-          backgroundColor: appBarColor,
+          backgroundColor: appBarColor ?? backgroundColor,
           leading: showBackIcon
               ? InkWell(
                   onTap: () => Get.back(),

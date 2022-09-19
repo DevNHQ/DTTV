@@ -65,3 +65,18 @@ const size14w500 = TextStyle(
   height: lineHeight,
   fontWeight: w500,
 );
+const size48W900Red = TextStyle(
+  fontSize: 48.0,
+  fontWeight: w900,
+  color: Colors.red,
+);
+const size48W900Blue = TextStyle(
+  fontSize: 48.0,
+  fontWeight: w900,
+  color: Colors.blue,
+);
+const size48W900Yellow = TextStyle(
+  fontSize: 48.0,
+  fontWeight: w900,
+  color: Colors.yellow,
+);

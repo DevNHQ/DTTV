@@ -12,7 +12,7 @@ class SplashPage extends StatelessWidget {
 
   Future<void> initializeSettings() async {
     _authmanagerController.checkLoginStatus();
-    await Future.delayed(const Duration(seconds: 3));
+    await Future.delayed(const Duration(microseconds: 100));
   }
 
   @override
