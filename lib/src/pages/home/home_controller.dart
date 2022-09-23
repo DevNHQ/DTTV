@@ -7,6 +7,15 @@ class HomeController extends GetxController {
   final pageController = PageController(viewportFraction: 1.0, keepPage: true);
   int _currentPage = 0;
   late Timer timer;
+  // late PageController controller;
+  int currentPage = 0;
+  List<String> listItem = ['Page 1', 'Page 2', 'Page 3', 'Page 4'];
+  String textTest = 'Tiếng Việt';
+  final List<String> unselected = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
+  final List<String> selected = [];
+
+  final unselectedListKey = GlobalKey<AnimatedListState>();
+  final selectedListKey = GlobalKey<AnimatedListState>();
   @override
   Future<void> onInit() async {
     // autoPlay();
@@ -18,6 +27,16 @@ class HomeController extends GetxController {
     pageController.dispose();
     // timer.cancel();
     super.onClose();
+  }
+
+  String randomText(String data) {
+    return (data.replaceAll(' ', '').split('')..shuffle())
+        .join()
+        .replaceAll('', ' / ');
+  }
+
+  List<String> randomList(String data) {
+    return data.replaceAll(' ', '').split('');
   }
 
   void autoPlay() {
