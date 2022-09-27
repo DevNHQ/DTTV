@@ -3,6 +3,8 @@ import 'dart:math' as math;
 import 'package:dttv/src/commons/styles.dart';
 import 'package:dttv/src/components/custom_appbar.dart';
 import 'package:dttv/src/pages/home/component/cursor_painter.dart';
+import 'package:dttv/src/pages/home/component/demo.dart';
+import 'package:dttv/src/pages/home/component/item.dart';
 import 'package:dttv/src/pages/home/component/page_view.dart';
 import 'package:dttv/src/pages/home/component/test.dart';
 import 'package:dttv/src/pages/home/home_controller.dart';
@@ -81,7 +83,7 @@ class HomePage extends StatelessWidget {
     //     ),
     //   ),
     // );
-    return Scaffold(body: TestPage());
+    return Scaffold(body: WrapExample());
     // body: LayoutBuilder(
     //   builder: (context, constraints) {
     //     final height = constraints.biggest.height;

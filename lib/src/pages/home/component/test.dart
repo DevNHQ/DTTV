@@ -45,16 +45,15 @@ class TestPage extends StatelessWidget {
                 crossAxisAlignment: WrapCrossAlignment.center,
                 alignment: WrapAlignment.center,
                 direction: Axis.horizontal,
-                key: controller.unselectedListKey,
                 children: controller.unselected.map((dynamic item) {
                   int index = controller.unselected.indexOf(item);
                   return InkWell(
+                    key: controller.unselectedListKey[index],
                     onTap: () => _moveItem(
                       fromIndex: index,
                       fromList: controller.unselected,
-                      fromKey: controller.unselectedListKey,
                       toList: controller.selected,
-                      toKey: controller.selectedListKey,
+                      keys: controller.unselectedListKey[index],
                       context: context,
                     ),
                     child: Item(text: controller.unselected[index]),
@@ -68,16 +67,17 @@ class TestPage extends StatelessWidget {
                 crossAxisAlignment: WrapCrossAlignment.center,
                 alignment: WrapAlignment.center,
                 direction: Axis.horizontal,
-                key: controller.selectedListKey,
                 children: controller.selected.map((dynamic item) {
                   int index = controller.selected.indexOf(item);
                   return InkWell(
+                    key: controller.unselectedListKey[index],
                     onTap: () => _moveItem(
                       fromIndex: index,
                       fromList: controller.selected,
-                      fromKey: controller.selectedListKey,
+                      keys: controller.unselectedListKey[index],
+                      // fromKey: controller.selectedListKey,
                       toList: controller.unselected,
-                      toKey: controller.unselectedListKey,
+                      // toKey: controller.unselectedListKey,
                       context: context,
                     ),
                     child: Item(text: controller.selected[index]),
@@ -191,37 +191,36 @@ class TestPage extends StatelessWidget {
     required int fromIndex,
     required BuildContext context,
     required List fromList,
-    required GlobalKey<AnimatedListState> fromKey,
+    required GlobalKey keys,
     required List toList,
-    required GlobalKey<AnimatedListState> toKey,
     Duration duration = const Duration(milliseconds: 300),
   }) {
-    final globalKey = GlobalKey();
+    // final globalKey = GlobalKey();
     final item = fromList.removeAt(fromIndex);
-    fromKey.currentState?.removeItem(
-      fromIndex,
-      (context, animation) {
-        return SizeTransition(
-          sizeFactor: animation,
-          child: Opacity(
-            key: globalKey,
-            opacity: 0.0,
-            child: Item(text: item),
-          ),
-        );
-      },
-      duration: duration,
-    );
+    // keys.currentState?.removeItem(
+    //   fromIndex,
+    //   (context, animation) {
+    //     return SizeTransition(
+    //       sizeFactor: animation,
+    //       child: Opacity(
+    //         key: globalKey,
+    //         opacity: 0.0,
+    //         child: Item(text: item),
+    //       ),
+    //     );
+    //   },
+    //   duration: duration,
+    // );
     _flyingCount++;
 
     WidgetsBinding.instance!.addPostFrameCallback((timeStamp) async {
       // Find the starting position of the moving item, which is exactly the
       // gap its leaving behind, in the original list.
-      final box1 = globalKey.currentContext?.findRenderObject() as RenderBox;
+      final box1 = keys.currentContext?.findRenderObject() as RenderBox;
       final pos1 = box1.localToGlobal(Offset.zero);
       // Find the destination position of the moving item, which is at the
       // end of the destination list.
-      final box2 = toKey.currentContext!.findRenderObject() as RenderBox;
+      final box2 = keys.currentContext!.findRenderObject() as RenderBox;
       final box2height = box1.size.height * (toList.length + _flyingCount - 1);
       final pos2 = box2.localToGlobal(Offset(0, box2height));
       // Insert an overlay to "fly over" the item between two lists.
@@ -243,7 +242,7 @@ class TestPage extends StatelessWidget {
       await Future.delayed(duration);
       entry.remove();
       toList.add(item);
-      toKey.currentState!.insertItem(toList.length - 1);
+      // toKey.currentState!.insertItem(toList.length - 1);
       _flyingCount--;
     });
   }

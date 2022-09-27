@@ -11,11 +11,21 @@ class HomeController extends GetxController {
   int currentPage = 0;
   List<String> listItem = ['Page 1', 'Page 2', 'Page 3', 'Page 4'];
   String textTest = 'Tiếng Việt';
-  final List<String> unselected = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
+  final List<String> unselected = [
+    'A',
+    'B',
+    'C',
+  ];
   final List<String> selected = [];
 
-  final unselectedListKey = GlobalKey<AnimatedListState>();
-  final selectedListKey = GlobalKey<AnimatedListState>();
+  // final unselectedListKey = GlobalKey<AnimatedListState>();
+  // final selectedListKey = GlobalKey<AnimatedListState>();
+  final List<GlobalKey> unselectedListKey = [
+    GlobalKey(),
+    GlobalKey(),
+    GlobalKey()
+  ];
+  final List<GlobalKey> selectedListKey = [];
   @override
   Future<void> onInit() async {
     // autoPlay();
