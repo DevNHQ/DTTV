@@ -140,6 +140,7 @@ class SidekickTeamBuilderState<T> extends State<SidekickTeamBuilder<T>>
     }
   }
 
+  @override
   void didUpdateWidget(covariant SidekickTeamBuilder<T> oldWidget) {
     super.didUpdateWidget(oldWidget);
     _initLists();

@@ -5,8 +5,10 @@ import 'package:dttv/src/components/custom_appbar.dart';
 import 'package:dttv/src/pages/home/component/cursor_painter.dart';
 import 'package:dttv/src/pages/home/component/demo.dart';
 import 'package:dttv/src/pages/home/component/item.dart';
+import 'package:dttv/src/pages/home/component/my_home_page.dart';
 import 'package:dttv/src/pages/home/component/page_view.dart';
 import 'package:dttv/src/pages/home/component/test.dart';
+import 'package:dttv/src/pages/home/component/test1.dart';
 import 'package:dttv/src/pages/home/home_controller.dart';
 
 import 'package:dttv/src/pages/home/component/test_painter.dart';
@@ -83,7 +85,7 @@ class HomePage extends StatelessWidget {
     //     ),
     //   ),
     // );
-    return Scaffold(body: WrapExample());
+    return Scaffold(body: AddToFave());
     // body: LayoutBuilder(
     //   builder: (context, constraints) {
     //     final height = constraints.biggest.height;

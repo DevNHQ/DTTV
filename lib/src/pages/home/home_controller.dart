@@ -15,6 +15,12 @@ class HomeController extends GetxController {
     'A',
     'B',
     'C',
+    'A',
+    'B',
+    'C',
+    'A',
+    'B',
+    'C',
   ];
   final List<String> selected = [];
 
@@ -26,6 +32,10 @@ class HomeController extends GetxController {
     GlobalKey()
   ];
   final List<GlobalKey> selectedListKey = [];
+  final GlobalKey<AnimatedListState> unselectedListKey1 =
+      GlobalKey<AnimatedListState>();
+  final GlobalKey<AnimatedListState> selectedListKey1 =
+      GlobalKey<AnimatedListState>();
   @override
   Future<void> onInit() async {
     // autoPlay();

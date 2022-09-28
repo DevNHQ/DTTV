@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math' as math;
 
 class DemoClass extends StatefulWidget {
   DemoClass({Key? key}) : super(key: key);
@@ -35,7 +36,7 @@ class _DemoClassState extends State<DemoClass> {
           firstItemLeftPos = position.dx;
           animDuration = 0;
           setState(() {});
-          Future.delayed(Duration(milliseconds: 10), () {
+          Future.delayed(const Duration(milliseconds: 10), () {
             RenderBox FinalRenderbox =
                 finalWidgetKey.currentContext?.findRenderObject() as RenderBox;
             Offset finalPos = FinalRenderbox.localToGlobal(Offset.zero);
@@ -46,6 +47,9 @@ class _DemoClassState extends State<DemoClass> {
           });
         },
         child: CircleAvatar(
+          backgroundColor:
+              Color((math.Random().nextDouble() * 0xFFFFFF).toInt())
+                  .withOpacity(1.0),
           child: Text("$index"),
         ),
       );

@@ -1,265 +1,122 @@
-import 'package:dttv/src/pages/home/home_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
-import 'dart:math' as math;
 
-class TestPage extends StatelessWidget {
-  TestPage({Key? key}) : super(key: key);
+class AddToFave extends StatefulWidget {
+  const AddToFave({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return GetBuilder<HomeController>(
-      builder: (controller) {
-        return Padding(
-          padding: const EdgeInsets.only(top: 100),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              // SizedBox(
-              //   width: 50,
-              //   child: AnimatedList(
-              //     key: controller.unselectedListKey,
-              //     initialItemCount: controller.unselected.length,
-              //     itemBuilder: (context, index, animation) {
-              //       return InkWell(
-              //         onTap: () => _moveItem(
-              //           fromIndex: index,
-              //           fromList: controller.unselected,
-              //           fromKey: controller.unselectedListKey,
-              //           toList: controller.selected,
-              //           toKey: controller.selectedListKey,
-              //           context: context,
-              //         ),
-              //         child: Item(text: controller.unselected[index]),
-              //       );
-              //     },
-              //   ),
-              // ),
-
-              Wrap(
-                spacing: 10,
-                runSpacing: 10,
-                verticalDirection: VerticalDirection.down,
-                crossAxisAlignment: WrapCrossAlignment.center,
-                alignment: WrapAlignment.center,
-                direction: Axis.horizontal,
-                children: controller.unselected.map((dynamic item) {
-                  int index = controller.unselected.indexOf(item);
-                  return InkWell(
-                    key: controller.unselectedListKey[index],
-                    onTap: () => _moveItem(
-                      fromIndex: index,
-                      fromList: controller.unselected,
-                      toList: controller.selected,
-                      keys: controller.unselectedListKey[index],
-                      context: context,
-                    ),
-                    child: Item(text: controller.unselected[index]),
-                  );
-                }).toList(),
-              ),
-              Wrap(
-                spacing: 10,
-                runSpacing: 10,
-                verticalDirection: VerticalDirection.down,
-                crossAxisAlignment: WrapCrossAlignment.center,
-                alignment: WrapAlignment.center,
-                direction: Axis.horizontal,
-                children: controller.selected.map((dynamic item) {
-                  int index = controller.selected.indexOf(item);
-                  return InkWell(
-                    key: controller.unselectedListKey[index],
-                    onTap: () => _moveItem(
-                      fromIndex: index,
-                      fromList: controller.selected,
-                      keys: controller.unselectedListKey[index],
-                      // fromKey: controller.selectedListKey,
-                      toList: controller.unselected,
-                      // toKey: controller.unselectedListKey,
-                      context: context,
-                    ),
-                    child: Item(text: controller.selected[index]),
-                  );
-                }).toList(),
-              ),
-              // SizedBox(
-              //   width: 50.0,
-              //   child: AnimatedList(
-              //     key: controller.selectedListKey,
-              //     initialItemCount: controller.selected.length,
-              //     itemBuilder: (context, index, animation) {
-              //       return InkWell(
-              //         onTap: () => _moveItem(
-              //           fromIndex: index,
-              //           fromList: controller.selected,
-              //           fromKey: controller.selectedListKey,
-              //           toList: controller.unselected,
-              //           toKey: controller.unselectedListKey,
-              //           context: context,
-              //         ),
-              //         child: Item(text: controller.selected[index]),
-              //       );
-              //     },
-              //   ),
-              // ),
-            ],
-          ),
-        );
-        // return Center(
-        //   child: Column(
-        //     mainAxisAlignment: MainAxisAlignment.center,
-        //     crossAxisAlignment: CrossAxisAlignment.center,
-        //     children: [
-        //       Text(
-        //         controller.randomText(controller.textTest),
-        //         style:
-        //             const TextStyle(fontWeight: FontWeight.w700, fontSize: 16),
-        //       ),
-        //       const SizedBox(
-        //         height: 16.0,
-        //       ),
-        //       Container(
-        //         margin: const EdgeInsets.all(15.0),
-        //         padding: const EdgeInsets.all(3.0),
-        //         height: 50.0,
-        //         decoration:
-        //             BoxDecoration(border: Border.all(color: Colors.blueAccent)),
-        //       ),
-        //       Wrap(
-        //         spacing: 10,
-        //         runSpacing: 10,
-        //         verticalDirection: VerticalDirection.down,
-        //         crossAxisAlignment: WrapCrossAlignment.center,
-        //         alignment: WrapAlignment.center,
-        //         direction: Axis.horizontal,
-        //         children: controller
-        //             .randomList(controller.textTest)
-        //             .map((dynamic item) => Container(
-        //                   width: 50,
-        //                   height: 50,
-        //                   color: Color((math.Random().nextDouble() * 0xFFFFFF)
-        //                           .toInt())
-        //                       .withOpacity(1.0),
-        //                   alignment: Alignment.center,
-        //                   child: Text(
-        //                     item.toString(),
-        //                     style: const TextStyle(
-        //                         fontWeight: FontWeight.w700,
-        //                         fontSize: 16,
-        //                         color: Colors.white),
-        //                   ),
-        //                 ))
-        //             .toList(),
-        //       ),
-        // ListView(
-        //   shrinkWrap: true,
-        //   scrollDirection: Axis.horizontal,
-        //   children:
-        //    controller
-        //       .randomList(controller.textTest)
-        //       .map((dynamic item) => Container(
-        //             width: 50,
-        //             height: 50,
-        //             color: Color((math.Random().nextDouble() * 0xFFFFFF).toInt()).withOpacity(1.0),
-        //             alignment: Alignment.center,
-        //             child: Text(
-        //               item.toString(),
-        //               style: const TextStyle(
-        //                   fontWeight: FontWeight.w700,
-        //                   fontSize: 16,
-        //                   color: Colors.white),
-        //             ),
-        //           ))
-        //       .toList(),
-        // ),
-
-        // controller.randomList(controller.textTest).map((e) {
-        //   return Container();
-        // }),
-        //     ],
-        //   ),
-        // );
-      },
-    );
-  }
-
-  int _flyingCount = 0;
-
-  _moveItem({
-    required int fromIndex,
-    required BuildContext context,
-    required List fromList,
-    required GlobalKey keys,
-    required List toList,
-    Duration duration = const Duration(milliseconds: 300),
-  }) {
-    // final globalKey = GlobalKey();
-    final item = fromList.removeAt(fromIndex);
-    // keys.currentState?.removeItem(
-    //   fromIndex,
-    //   (context, animation) {
-    //     return SizeTransition(
-    //       sizeFactor: animation,
-    //       child: Opacity(
-    //         key: globalKey,
-    //         opacity: 0.0,
-    //         child: Item(text: item),
-    //       ),
-    //     );
-    //   },
-    //   duration: duration,
-    // );
-    _flyingCount++;
-
-    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) async {
-      // Find the starting position of the moving item, which is exactly the
-      // gap its leaving behind, in the original list.
-      final box1 = keys.currentContext?.findRenderObject() as RenderBox;
-      final pos1 = box1.localToGlobal(Offset.zero);
-      // Find the destination position of the moving item, which is at the
-      // end of the destination list.
-      final box2 = keys.currentContext!.findRenderObject() as RenderBox;
-      final box2height = box1.size.height * (toList.length + _flyingCount - 1);
-      final pos2 = box2.localToGlobal(Offset(0, box2height));
-      // Insert an overlay to "fly over" the item between two lists.
-      final entry = OverlayEntry(builder: (BuildContext context) {
-        return TweenAnimationBuilder(
-          tween: Tween<Offset>(begin: pos1, end: pos2),
-          duration: duration,
-          builder: (_, Offset value, child) {
-            return Positioned(
-              left: value.dx,
-              top: value.dy,
-              child: Item(text: item),
-            );
-          },
-        );
-      });
-
-      Overlay.of(context)!.insert(entry);
-      await Future.delayed(duration);
-      entry.remove();
-      toList.add(item);
-      // toKey.currentState!.insertItem(toList.length - 1);
-      _flyingCount--;
-    });
-  }
+  _AddToFaveState createState() => _AddToFaveState();
 }
 
-class Item extends StatelessWidget {
-  final String text;
-
-  const Item({Key? key, required this.text}) : super(key: key);
-
+class _AddToFaveState extends State<AddToFave> {
+  List<String> unselected = ['1', '2', '3', '4', '5'];
+  List<GlobalKey> unselectedKey = [
+    GlobalKey(),
+    GlobalKey(),
+    GlobalKey(),
+    GlobalKey(),
+    GlobalKey(),
+  ];
+  List<GlobalKey> selectedKey = [
+    GlobalKey(),
+    GlobalKey(),
+    GlobalKey(),
+    GlobalKey(),
+    GlobalKey(),
+  ];
+  List<String> selected = [];
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(4.0),
-      child: CircleAvatar(
-        child: Text(text),
-        radius: 24,
+    return Scaffold(
+      body: SafeArea(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Center(
+              child: Wrap(
+                spacing: 10,
+                runSpacing: 10,
+                verticalDirection: VerticalDirection.down,
+                crossAxisAlignment: WrapCrossAlignment.center,
+                alignment: WrapAlignment.center,
+                direction: Axis.horizontal,
+                children: selected.map((e) {
+                  int index = selected.indexOf(e);
+                  return InkWell(
+                      key: unselectedKey[index],
+                      onTap: () {
+                        RenderBox box = unselectedKey[index]
+                            .currentContext
+                            ?.findRenderObject() as RenderBox;
+                        Offset position = box.localToGlobal(Offset.zero);
+                        // unselected.add(selected[index]);
+                        // selected.removeAt(index);
+                        setState(() {});
+                      },
+                      child: TweenAnimationBuilder(
+                        tween: Tween<Offset>(
+                            begin: Offset(177.5, 47.0),
+                            end: Offset(377.5, 47.0)),
+                        duration: const Duration(milliseconds: 500),
+                        builder: (_, Offset value, child) {
+                          return Positioned(
+                            left: value.dx,
+                            top: value.dy,
+                            child: Container(
+                              width: 35,
+                              height: 35,
+                              decoration: BoxDecoration(
+                                  color: Colors.black,
+                                  borderRadius: BorderRadius.circular(
+                                      MediaQuery.of(context).size.width / 5)),
+                              child: Center(
+                                  child: Text(
+                                selected[index],
+                                style: TextStyle(color: Colors.white),
+                              )),
+                            ),
+                          );
+                        },
+                      ));
+                }).toList(),
+              ),
+            ),
+            Center(
+              child: Wrap(
+                spacing: 10,
+                runSpacing: 10,
+                verticalDirection: VerticalDirection.down,
+                crossAxisAlignment: WrapCrossAlignment.center,
+                alignment: WrapAlignment.center,
+                direction: Axis.horizontal,
+                children: unselected.map((e) {
+                  int index = unselected.indexOf(e);
+                  return InkWell(
+                    key: selectedKey[index],
+                    onTap: () {
+                      // selected.add(unselected[index]);
+                      // unselected.removeAt(index);
+                      setState(() {});
+                    },
+                    child: Container(
+                      width: 35,
+                      height: 35,
+                      decoration: BoxDecoration(
+                          color: Colors.black,
+                          borderRadius: BorderRadius.circular(
+                              MediaQuery.of(context).size.width / 5)),
+                      child: Center(
+                          child: Text(
+                        unselected[index],
+                        style: TextStyle(color: Colors.white),
+                      )),
+                    ),
+                  );
+                }).toList(),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
